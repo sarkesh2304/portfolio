@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarkesh Y — Biomedical Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10243E;
+    --paper:#F7F5F0;
+    --signal:#3FA796;
+    --amber:#E8A33D;
+    --slate:#4A5568;
+    --white:#FFFFFF;
+    --line: rgba(16,36,62,0.14);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- WAVEFORM SIGNATURE ---------- */
+  .trace{
+    width:100%;
+    display:block;
+    height:64px;
+  }
+  .trace path{
+    fill:none;
+    stroke:var(--signal);
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:1400;
+    stroke-dashoffset:1400;
+    animation:draw 2.6s ease-out forwards;
+  }
+  @keyframes draw{
+    to{stroke-dashoffset:0;}
+  }
+  .trace-dot{
+    fill:var(--amber);
+    opacity:0;
+    animation:blip 2.6s ease-out forwards;
+  }
+  @keyframes blip{
+    0%,70%{opacity:0;}
+    75%{opacity:1;}
+    100%{opacity:1;}
+  }
+
+  /* ---------- HEADER / HERO ---------- */
+  header{
+    padding:64px 0 8px;
+  }
+  .top-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:8px;
+  }
+  .status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--slate);
+  }
+  .status .pip{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 0 0 rgba(63,167,150,0.5);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(63,167,150,0.45);}
+    70%{box-shadow:0 0 0 8px rgba(63,167,150,0);}
+    100%{box-shadow:0 0 0 0 rgba(63,167,150,0);}
+  }
+
+  .name{
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    font-weight:700;
+    line-height:1.02;
+    margin-top:18px;
+  }
+  .role{
+    font-size:clamp(1.05rem, 2.4vw, 1.35rem);
+    color:var(--slate);
+    font-family:'Source Serif 4', serif;
+    font-style:italic;
+    margin-top:10px;
+    max-width:640px;
+  }
+
+  .contact-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 28px;
+    margin-top:28px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+  }
+  .contact-row a, .contact-row span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color:var(--ink);
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .contact-row a:hover{color:var(--signal);}
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    padding:56px 0;
+    border-top:1px solid var(--line);
+  }
+  .eyebrow{
+    color:var(--signal);
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--signal);
+    display:inline-block;
+  }
+  .section-title{
+    font-size:clamp(1.5rem, 3.6vw, 2.1rem);
+    font-weight:600;
+    margin-bottom:22px;
+  }
+
+  /* Objective */
+  .objective p{
+    max-width:680px;
+    font-size:1.08rem;
+    color:var(--ink);
+  }
+
+  /* Education timeline */
+  .timeline{
+    position:relative;
+    padding-left:28px;
+  }
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:4px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .t-item{
+    position:relative;
+    padding-bottom:34px;
+  }
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";
+    position:absolute;
+    left:-28px; top:4px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--signal);
+  }
+  .t-year{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    color:var(--amber);
+    margin-bottom:4px;
+    display:block;
+  }
+  .t-degree{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.15rem;
+  }
+  .t-school{
+    color:var(--slate);
+    font-size:0.98rem;
+    margin-top:2px;
+  }
+
+  /* Skills */
+  .skill-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    border:1px solid var(--line);
+  }
+  .skill-col{
+    padding:22px 24px;
+    border-left:1px solid var(--line);
+  }
+  .skill-col:first-child{border-left:none;}
+  .skill-col h3{
+    font-size:0.95rem;
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .skill-col ul{
+    list-style:none;
+  }
+  .skill-col li{
+    font-size:0.92rem;
+    color:var(--ink);
+    padding:7px 0;
+    border-top:1px dashed var(--line);
+    display:flex;
+    justify-content:space-between;
+  }
+  .skill-col li:first-child{border-top:none;}
+  .skill-col li::after{
+    content:"";
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--signal);
+    margin-left:auto;
+    align-self:center;
+  }
+  .skill-col li span{margin-right:8px;}
+
+  /* Strengths */
+  .strengths{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .strength-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    padding:10px 16px;
+    border:1px solid var(--ink);
+    border-radius:2px;
+  }
+
+  /* Footer */
+  footer{
+    padding:48px 0 64px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  footer .mono{color:var(--slate);}
+  .cta{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.3rem;
+  }
+  .cta a{
+    text-decoration:none;
+    border-bottom:2px solid var(--signal);
+    padding-bottom:2px;
+  }
+  .cta a:hover{color:var(--signal);}
+
+  @media (max-width:640px){
+    .skill-grid{grid-template-columns:1fr;}
+    .skill-col{border-left:none;border-top:1px solid var(--line);}
+    .skill-col:first-child{border-top:none;}
+    header{padding-top:44px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .trace path{animation:none; stroke-dashoffset:0;}
+    .trace-dot{animation:none; opacity:1;}
+    .status .pip{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="top-row">
+      <span class="status mono"><span class="pip"></span> Available for internships</span>
+      <span class="mono">Kanchipuram, Tamil Nadu</span>
+    </div>
+    <h1 class="name">Sarkesh&nbsp;Y</h1>
+    <p class="role">Biomedical Engineering student building fluency across medical instrumentation, devices, and the software that supports them.</p>
+
+    <div class="contact-row">
+      <a href="tel:9786200791">☎ 9786200791</a>
+      <a href="mailto:keshsarkesh@gmail.com">✉ keshsarkesh@gmail.com</a>
+      <a href="https://www.linkedin.com/in/sarkesh-kesh-8154362b7" target="_blank" rel="noopener">↗ LinkedIn</a>
+    </div>
+  </header>
+
+  <svg class="trace" viewBox="0 0 900 64" preserveAspectRatio="none">
+    <path d="M0,32 L200,32 L230,32 L245,10 L260,54 L275,32 L310,32 L900,32" />
+    <circle class="trace-dot" cx="245" cy="10" r="4"></circle>
+  </svg>
+
+  <section class="objective">
+    <div class="eyebrow mono">Objective</div>
+    <p>To obtain a challenging position in a reputed organization where I can apply my Biomedical Engineering knowledge and technical skills. I am eager to learn new technologies, gain practical experience, and enhance my professional skills — a quick learner, hardworking, and dedicated to achieving organizational goals, looking to build a lasting career in Biomedical Engineering through continuous learning and teamwork.</p>
+  </section>
+
+  <section class="education">
+    <div class="eyebrow mono">Education</div>
+    <h2 class="section-title">Academic record</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <span class="t-year">2023 — 2027</span>
+        <div class="t-degree">B.E. Biomedical Engineering</div>
+        <div class="t-school">Sri Jayaram Institute of Engineering and Technology</div>
+      </div>
+      <div class="t-item">
+        <span class="t-year">2022 — 2023</span>
+        <div class="t-degree">Higher Secondary Certificate (HSC)</div>
+        <div class="t-school">Government Higher Secondary School</div>
+      </div>
+      <div class="t-item">
+        <span class="t-year">2020 — 2021</span>
+        <div class="t-degree">SSLC</div>
+        <div class="t-school">Adithiya Matriculation School</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills">
+    <div class="eyebrow mono">Capabilities</div>
+    <h2 class="section-title">Skills</h2>
+    <div class="skill-grid">
+      <div class="skill-col">
+        <h3>Domain</h3>
+        <ul>
+          <li><span>Medical Instrumentation</span></li>
+          <li><span>Medical Devices</span></li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Software &amp; Tools</h3>
+        <ul>
+          <li><span>Python</span></li>
+          <li><span>Excel</span></li>
+          <li><span>Word</span></li>
+          <li><span>PowerPoint</span></li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h3>Personal Strengths</h3>
+        <ul>
+          <li><span>Teamwork</span></li>
+          <li><span>Quick Learner</span></li>
+          <li><span>Communication</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <div class="mono" style="margin-bottom:10px;">Get in touch</div>
+      <div class="cta"><a href="mailto:keshsarkesh@gmail.com">keshsarkesh@gmail.com</a></div>
+    </div>
+    <div class="mono">© 2026 Sarkesh Y</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
